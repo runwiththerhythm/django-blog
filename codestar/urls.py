@@ -21,6 +21,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("about/", include("about.urls"), name="about-urls"),
+    path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path("", include("blog.urls"), name="blog-urls"),
@@ -28,3 +29,5 @@ urlpatterns = [
 
 # Serve media files always (needed for Summernote)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
